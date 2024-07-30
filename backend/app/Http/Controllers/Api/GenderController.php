@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class GenderController extends Controller
 {
+    public function index()
+    {
+        $genders = Gender::all();
+        return response()->json([
+            'status' => 200,
+            'genders' => $genders
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -20,6 +29,15 @@ class GenderController extends Controller
 
         return response()->json([
             'status' => 200
+        ]);
+    }
+
+    public function edit($gender_id)
+    {
+        $gender = Gender::find($gender_id);
+        return response()->json([
+            'status' => 200,
+            'gender' => $gender
         ]);
     }
 }

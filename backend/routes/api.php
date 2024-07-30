@@ -20,5 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(GenderController::class)->group(function () {
+    Route::get('/genders', 'index');
+    Route::get('/gender/edit/{gender_id}', 'edit');
     Route::post('/gender/store', 'store');
 });
