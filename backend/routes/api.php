@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GenderController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,8 @@ Route::controller(GenderController::class)->group(function () {
     Route::get('/genders', 'index');
     Route::get('/gender/edit/{gender_id}', 'edit');
     Route::post('/gender/store', 'store');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::post('/user/store', 'store');
 });

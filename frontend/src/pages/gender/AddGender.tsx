@@ -1,10 +1,5 @@
 import axios from "axios";
-import React, {
-  ChangeEvent,
-  FormEvent,
-  InputHTMLAttributes,
-  useState,
-} from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 interface Errors {
   gender?: string[];
