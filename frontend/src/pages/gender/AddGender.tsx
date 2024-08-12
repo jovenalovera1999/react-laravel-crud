@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import Navbar from "../../components/Navbar";
 
 interface Errors {
   gender?: string[];
@@ -40,7 +41,7 @@ function AddGender() {
             errors: {},
           }));
         } else {
-          console.error("Unexpected code status: ", res.data.status);
+          console.error("Unexpected status error: ", res.data.status);
         }
       })
       .catch((error) => {
@@ -50,13 +51,14 @@ function AddGender() {
             errors: error.response.data.errors,
           }));
         } else {
-          console.log("Unexpected error: ", error);
+          console.log("Unexpected server error: ", error);
         }
       });
   };
 
   return (
     <>
+      <Navbar />
       <form onSubmit={handleSaveGender}>
         <div className="mb-3">
           <label htmlFor="gender" className="form-label">

@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::leftJoin('tbl_genders', 'tbl_users.gender_id', '=', 'tbl_genders.gender_id')
+            ->orderBy('tbl_users.last_name', 'asc')
+            ->get();
+
+        return response()->json([
+            'status' => 200,
+            'users' => $users
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -34,6 +46,17 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 200
+        ]);
+    }
+
+    public function edit($user_id)
+    {
+        $user = User::leftJoin('tbl_genders', 'tbl_users.gender_id', '=', 'tbl_users.gender_id')
+            ->find($user_id);
+
+        return response()->json([
+            'status' => 200,
+            'user' => $user
         ]);
     }
 }
